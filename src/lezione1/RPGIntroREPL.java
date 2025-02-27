@@ -10,10 +10,9 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class RPGIntroREPL {
-    private static String name = "Adventurer";
-    private static int age = 18;
-    private static String role = "Wanderer";
-
+    private static String name = "";
+    private static Integer age = null;
+    private static String role = "";
 
     public static void main(String[] args) {
         showIntro();
@@ -36,7 +35,7 @@ public class RPGIntroREPL {
             System.out.println();
             sleep(500);
         }
-        System.out.println("\nWelcome, " + name + ". Let's begin your journey of self-discovery.");
+        System.out.println("\nWelcome, adventurer. Let's begin your journey of self-discovery.");
         System.out.println("To progress, define your character using Java expressions.");
         System.out.println("Examples:");
         System.out.println("- name = \"Eldrin\"; // Choose your name");
@@ -65,32 +64,49 @@ public class RPGIntroREPL {
                 System.out.print("jshell> ");
                 input = reader.readLine();
                 if (input == null || input.trim().equalsIgnoreCase("exit")) {
+                    if (name.isEmpty() || age == null || role.isEmpty()) {
+                        System.out.println("You must define all attributes (name, age, role) before concluding.");
+                        continue;
+                    }
+                    System.out.println("\nFinal Character Sheet:");
+                    System.out.println("----------------------");
+                    System.out.println("Name: " + name);
+                    System.out.println("Age: " + age);
+                    System.out.println("Role: " + role);
+                    System.out.println("----------------------");
                     System.out.println("Your journey begins, " + name + ", the " + age + "-year-old " + role + "!");
                     System.out.println("Farewell, and may your choices shape the world of Eldoria!");
                     break;
                 }
-                List<SnippetEvent> events = jshell.eval(input);
-                for (SnippetEvent event : events) {
-                    if (event.value() != null) {
-                        System.out.println(event.value());
-                    }
-                    if (event.snippet() instanceof VarSnippet) {
-                        String varName = ((VarSnippet) event.snippet()).name();
-                        if (varName.equals("name")) {
-                            name = jshell.eval("name").get(0).value();
-                            System.out.println("You are now known as " + name + ".");
-                        } else if (varName.equals("age")) {
-                            age = Integer.parseInt(jshell.eval("age").get(0).value());
-                            System.out.println("You are " + age + " years old.");
-                        } else if (varName.equals("role")) {
-                            role = jshell.eval("role").get(0).value();
-                            System.out.println("You have chosen the path of the " + role + ".");
+                try {
+                    List<SnippetEvent> events = jshell.eval(input);
+                    for (SnippetEvent event : events) {
+                        if (event.value() != null) {
+                            System.out.println(event.value());
+                        }
+                        if (event.snippet() instanceof VarSnippet) {
+                            String varName = ((VarSnippet) event.snippet()).name();
+                            if (varName.equals("name")) {
+                                name = jshell.eval("name").get(0).value();
+                                System.out.println("You are now known as " + name + ".");
+                            } else if (varName.equals("age")) {
+                                age = Integer.parseInt(jshell.eval("age").get(0).value());
+                                System.out.println("You are " + age + " years old.");
+                            } else if (varName.equals("role")) {
+                                role = jshell.eval("role").get(0).value();
+                                System.out.println("You have chosen the path of the " + role + ".");
+                            }
                         }
                     }
+                } catch (Exception e) {
+                    System.out.println("An error occurred: " + e.getMessage());
+                    e.printStackTrace(System.out);
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("An unexpected error occurred: " + e.getMessage());
+            e.printStackTrace(System.out);
         }
     }
 }
+

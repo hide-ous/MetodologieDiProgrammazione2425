@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-public class RPGIntroREPL {
+public class RPGDataREPL {
     private static final String EXPECTED_MESSAGE = CaesarCipher.decrypt("YMSUOWQK", 12);
 
     public static void main(String[] args) {
@@ -55,7 +55,7 @@ public class RPGIntroREPL {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
              JShell jshell = JShell.create()) {
 
-            jshell.eval("import " + RPGIntroREPL.class.getName() + ";");
+            jshell.eval("import " + RPGDataREPL.class.getName() + ";");
 
             printWithDelay("Declare an integer variable named 'x' and assign it the result of (25 % 7) * 3.");
             printWithDelay("Declare a boolean variable 'isMagic' that is true if x is greater than 10.");

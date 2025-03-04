@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 public class RPGIntroREPL {
-    private static final String EXPECTED_MESSAGE = "MAGICKEY";
+    private static final String EXPECTED_MESSAGE = CaesarCipher.decrypt("YMSUOWQK", 12);
 
     public static void main(String[] args) {
         showIntro();
@@ -59,9 +59,7 @@ public class RPGIntroREPL {
 
             printWithDelay("Declare an integer variable named 'x' and assign it the result of (25 % 7) * 3.");
             printWithDelay("Declare a boolean variable 'isMagic' that is true if x is greater than 10.");
-            printWithDelay("Create a variable 'sum' storing the sum of x and the integer representation of 5.5.");
-            printWithDelay("Convert sum to a boolean: Store true if sum is even, false otherwise.");
-            printWithDelay("Decode the secret message and store it in 'decryptedMessage'.");
+            printWithDelay("Decode the secret message 'YMSUOWQK' and store it in 'decryptedMessage'. As an offset, use x if isMagic, else use 3.");
 
             String input;
             while (true) {
@@ -143,7 +141,7 @@ public class RPGIntroREPL {
 
         try {
             String hiddenPass = jshell.eval("hiddenPass").get(0).value();
-            if(hiddenPass.substring(1, hiddenPass.length() - 1).compareTo("you shall pass")==0){
+            if(hiddenPass.substring(1, hiddenPass.length() - 1).compareTo("letMeIn")==0){
                 feedback.append("✔ You found an alternative way through the test!\n");
                 return true;
             }

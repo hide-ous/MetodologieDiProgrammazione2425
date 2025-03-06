@@ -19,7 +19,7 @@ public class CharacterTester {
     public static void main(String[] args) {
         printWithDelay("You step into the chamber beyond the secret passage. Before you stands the Guardian of Eldoria’s Forgotten Oath.");
         printWithDelay("\"You have proven your intellect, but no hero walks alone,\" the Guardian intones.\n");
-        printWithDelay("Three sigils glow before you. Inscribe their names and essence, and they shall be summoned to your side through this magic Reflection.");
+        printWithDelay("Three sigils glow before you. Inscribe their names and essence, and they shall be summoned to your side through the magic of Reflection.");
 
         try {
             // Load the RPGCharacter class dynamically

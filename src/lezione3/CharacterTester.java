@@ -17,11 +17,9 @@ public class CharacterTester {
     }
 
     public static void main(String[] args) {
-        printWithDelay("You stand before the Grand Archivist of Eldoria, a mystical entity who records the tales of all heroes.");
-        printWithDelay("To inscribe your name into the legendary records, you must define your essence in the form of a class.");
-        printWithDelay("The Archivist will test your identity by invoking your own words—your methods—through ancient magic (Reflection).");
-        printWithDelay("Only those who define themselves correctly will pass the trial.");
-        printWithDelay("Prepare your incantation, then invoke the trial once more.");
+        printWithDelay("You step into the chamber beyond the secret passage. Before you stands the Guardian of Eldoria’s Forgotten Oath.");
+        printWithDelay("\"You have proven your intellect, but no hero walks alone,\" the Guardian intones.\n");
+        printWithDelay("Three sigils glow before you. Inscribe their names and essence, and they shall be summoned to your side through this magic Reflection.");
 
         try {
             // Load the RPGCharacter class dynamically
@@ -51,9 +49,9 @@ public class CharacterTester {
                 printWithDelay("Got: " + result);
             }
         } catch (ClassNotFoundException e) {
-            printWithDelay("Error: RPGCharacter class not found. Ensure it is correctly implemented in the lezione3 package.");
-            printWithDelay("Follow these steps:");
-            printWithDelay("1) Create a class named RPGCharacter.");
+            printWithDelay("Error: RPGCharacter class not found. The Guardian shakes its head.");
+            printWithDelay("Follow these steps to summon your allies:");
+            printWithDelay("1) Create a class named RPGCharacter inside the lezione3 package.");
             printWithDelay("2) Ensure the class has a constructor that accepts (String, int, String).");
             printWithDelay("3) Implement a describe() method that returns a formatted string.");
             printWithDelay("4) Run this tester again once the implementation is complete.");

@@ -53,7 +53,7 @@ public class CharacterTester {
         } catch (ClassNotFoundException e) {
             printWithDelay("Error: RPGCharacter class not found. Ensure it is correctly implemented in the lezione3 package.");
             printWithDelay("Follow these steps:");
-            printWithDelay("1) Create a class named RPGCharacter inside the lezione3 package.");
+            printWithDelay("1) Create a class named RPGCharacter.");
             printWithDelay("2) Ensure the class has a constructor that accepts (String, int, String).");
             printWithDelay("3) Implement a describe() method that returns a formatted string.");
             printWithDelay("4) Run this tester again once the implementation is complete.");

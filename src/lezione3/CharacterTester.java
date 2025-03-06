@@ -54,7 +54,7 @@ public class CharacterTester {
             printWithDelay("1) Create a class named RPGCharacter inside the lezione3 package.");
             printWithDelay("2) Ensure the class has a constructor that accepts (String, int, String).");
             printWithDelay("3) Implement a describe() method that returns a formatted string.");
-            printWithDelay("4) Run this tester again once the implementation is complete.");
+            printWithDelay("4) Run javac RPGCharacter.java and this tester again once the implementation is complete.");
             System.exit(1);
         } catch (Exception e) {
             printWithDelay("An error occurred during testing:");

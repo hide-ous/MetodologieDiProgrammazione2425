@@ -143,7 +143,7 @@ public class RPGDataREPL {
             String hiddenPass = jshell.eval("hiddenPass").get(0).value();
             if(hiddenPass.substring(1, hiddenPass.length() - 1).compareTo("letMeIn")==0){
                 feedback.append("✔ You found an alternative way through the test!\n");
-                return true;
+                allCorrect = true;
             }
         } catch (Exception ignored) {
         }

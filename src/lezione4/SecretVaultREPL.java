@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 public class SecretVaultREPL {
     private static boolean success = false;
+    private static String HERO = "Blancmange the White";
 
     public static void main(String[] args) {
         showIntro();
@@ -30,7 +31,7 @@ public class SecretVaultREPL {
 
     private static void showIntro() {
         String[] story = {
-                "The hero steps into a hidden chamber, discovering a glowing inscription listing the names of legendary warriors...",
+                "The hero, "+HERO+", steps into a hidden chamber, discovering a glowing inscription listing the names of legendary warriors...",
                 "Yet, their own name is missing. To prove their worth, they must find a way to add themselves to the list.",
                 "A strange magical terminal hums before them. 'The Guardian records only those worthy,' it whispers.",
                 "However, the system seems flawed. The list of participants is supposedly sealed, but something about its structure feels... vulnerable.",
@@ -57,8 +58,9 @@ public class SecretVaultREPL {
              JShell jshell = JShell.create()) {
 
             jshell.eval("import lezione4.SecretVault;");
+            jshell.eval("import lezione4.SecretVault.VaultHelper;");
+            jshell.eval("import java.util.List;");
             jshell.eval("SecretVault vault = new SecretVault();");
-            jshell.eval("SecretVault.VaultHelper helper = vault.new VaultHelper();");
 
             // Print initial list
             List<SnippetEvent> initialEvents = jshell.eval("vault.getHelper().getParticipants().toString()");
@@ -79,9 +81,11 @@ public class SecretVaultREPL {
                 try {
                     List<SnippetEvent> events = jshell.eval(input);
                     for (SnippetEvent event : events) {
-                        if (event.exception() != null) {
-                            printWithDelay("An error occurred: " + event.exception().getMessage());
-                        } else if (event.value() != null) {
+                        List<Diag> diagnostics = jshell.diagnostics(event.snippet()).collect(Collectors.toList());
+                        for (Diag diag : diagnostics) {
+                            printWithDelay("An error occurred: " + diag.getMessage(null));
+                        }
+                        if (event.value() != null) {
                             printWithDelay("Output: " + event.value());
                         }
                     }
@@ -102,7 +106,7 @@ public class SecretVaultREPL {
             for (SnippetEvent event : events) {
                 if (event.value() != null) {
                     printWithDelay("\nCurrent list of participants: " + event.value());
-                    if (event.value().contains("YourName")) {
+                    if (event.value().contains(HERO)) {
                         printWithDelay("\nSuccess! Your name now stands among the legends of Eldoria.");
                         success = true;
                         break;
@@ -111,6 +115,8 @@ public class SecretVaultREPL {
             }
             if (!success) {
                 printWithDelay("\nYour name remains absent. Keep searching for a way to inscribe it.");
+            } else {
+                System.exit(0);
             }
         } catch (Exception e) {
             printWithDelay("An unexpected error occurred while checking for manipulation.");

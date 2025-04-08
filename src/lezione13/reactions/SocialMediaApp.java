@@ -1,4 +1,4 @@
-package lezione13;
+package lezione13.reactions;
 
 public class SocialMediaApp {
     public static void main(String[] args) {

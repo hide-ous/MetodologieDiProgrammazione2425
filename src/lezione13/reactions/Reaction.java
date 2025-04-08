@@ -1,4 +1,4 @@
-package lezione13;
+package lezione13.reactions;
 
 class Reaction {
     private String userId;

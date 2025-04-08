@@ -1,4 +1,4 @@
-package lezione13;
+package lezione13.reactions;
 
 enum ReactionType {
     LIKE("👍", "Like"),
